@@ -13,6 +13,9 @@ blueprint:
     motion_trigger:
       name: Motion Sensor
       description: The motion sensor that will be used to trigger the automation
+      selector:
+        entity:
+          domain: binary_sensor
     cooldown_period:
       name: Cooldown Timer (Minutes)
       description: The time (in minutes) to wait until the original state of the light is restored
