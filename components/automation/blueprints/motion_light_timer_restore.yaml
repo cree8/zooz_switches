@@ -47,39 +47,39 @@ blueprint:
       {% set x = 'abcdefghijklmnopqrstuvwxyz' %} {% set ns =
       namespace(name='blueprint_motion_') %} {% for i in range(15)  %}   {% set
       ns.name = ns.name + x | random %} {% endfor %} {{ns.name}}  
-  trigger:
-    - type: motion
-      entity_id: !input motion_trigger
-  action:
-    - service: scene.create
-      data:
-        scene_id: "{{ var_scene_name }}"
-        snapshot_entities: !input light_target
-    - choose:
-        - conditions:
-            - condition: numeric_state
-              entity_id: sun.sun
-              attribute: elevation
-              above: 10
-          sequence:
-            - service: light.turn_on
-              target:
-                entity_id: !input light_target
-              data:
-                brightness_pct: !input brightness_day
-      default:
+trigger:
+  - type: motion
+    entity_id: !input motion_trigger
+action:
+- service: scene.create
+  data:
+    scene_id: "{{ var_scene_name }}"
+    snapshot_entities: !input light_target
+- choose:
+    - conditions:
+        - condition: numeric_state
+          entity_id: sun.sun
+          attribute: elevation
+          above: 10
+      sequence:
         - service: light.turn_on
           target:
             entity_id: !input light_target
           data:
-            brightness_pct: !input brightness_night
-    - wait_for_trigger:
-        - type: no_motion
-          entity_id: !input motion_trigger
-          for:
-            hours: 0
-            minutes: !input cooldown_period
-            seconds: 0
-            milliseconds: 0
-      continue_on_timeout: false
-    - scene: "{{ var_scene_name }}"
+            brightness_pct: !input brightness_day
+  default:
+    - service: light.turn_on
+      target:
+        entity_id: !input light_target
+      data:
+        brightness_pct: !input brightness_night
+- wait_for_trigger:
+    - type: no_motion
+      entity_id: !input motion_trigger
+      for:
+        hours: 0
+        minutes: !input cooldown_period
+        seconds: 0
+        milliseconds: 0
+  continue_on_timeout: false
+- scene: "{{ var_scene_name }}"
