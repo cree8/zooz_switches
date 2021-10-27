@@ -53,7 +53,7 @@ blueprint:
   action:
     - service: scene.create
       data:
-        scene_id: {{ var_scene_name }}
+        scene_id: {{ var_scene_name.name }}
         snapshot_entities: !input light_target
     - choose:
         - conditions:
@@ -82,4 +82,4 @@ blueprint:
             seconds: 0
             milliseconds: 0
       continue_on_timeout: false
-    - scene: {{ var_scene_name }}
+    - scene: {{ var_scene_name.name }}
