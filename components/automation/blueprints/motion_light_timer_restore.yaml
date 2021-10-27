@@ -43,11 +43,11 @@ blueprint:
           unit_of_measurement: "%"
           step: 1
           mode: slider
-  variables:
-    var_scene_name: >-
-      {% set x = 'abcdefghijklmnopqrstuvwxyz' %} {% set ns =
-      namespace(name='blueprint_motion_') %} {% for i in range(15)  %}   {% set
-      ns.name = ns.name + x | random %} {% endfor %} {{ns.name}}  
+variables:
+  var_scene_name: >-
+    {% set x = 'abcdefghijklmnopqrstuvwxyz' %} {% set ns =
+    namespace(name='blueprint_motion_') %} {% for i in range(15)  %}   {% set
+    ns.name = ns.name + x | random %} {% endfor %} {{ns.name}}  
 trigger:
   - type: motion
     entity_id: !input motion_trigger
