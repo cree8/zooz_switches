@@ -26,7 +26,9 @@ blueprint:
           max: 60
           unit_of_measurement: minutes
           step: 1
+          mode: box
     brightness_day:
+      name: Brightness (Day)
       description: Select the brightness (%) you wish to set the lights to during the day
       default: 100
       selector:
@@ -37,6 +39,7 @@ blueprint:
           step: 1
           mode: slider
     brightness_night:
+      name: Brightness (Night)
       description: Select the brightness (%) you wish to set the lights to during the night
       default: 100
       selector:
