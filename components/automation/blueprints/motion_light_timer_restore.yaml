@@ -3,7 +3,6 @@ blueprint:
   description: This automation will use a motion sensor to detect motion and activate a light. When the motion stops, a cooldown timer is started. If the timer reaches zero before additional motion is detected, the light will be restored to the pre-motion state.
   domain: automation
   source_url: https://github.com/willheineman/homeassistant/blob/main/components/automation/blueprints/motion_light_timer_restore.yaml
-
   input:
     light_target:
       name: Light
